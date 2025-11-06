@@ -31,9 +31,17 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Verify dist folder exists (debug helper)
-      - name: List dist folder
-        run: ls -la dist || echo "❌ No dist folder generated"
+     # Verify dist folder exists before deploy
+      - name: Verify dist folder
+        run: |
+          echo "✅ Checking project root"
+          ls -la
+          echo "✅ Checking dist folder"
+          if [ ! -d "dist" ]; then
+            echo "❌ dist folder missing! Build may have failed."
+            exit 1
+          fi
+          ls -la dist
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -42,4 +50,6 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_branch: gh-pages
           publish_dir: ./dist
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
 
