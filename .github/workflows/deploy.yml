@@ -1,4 +1,4 @@
-name: Deploy Vite app to GitHub Pages
+name: Deploy Vite app to GitHub Pages (official)
 
 on:
   push:
@@ -6,50 +6,43 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write    # allow github-actions[bot] to push
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout your repo
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # setup Node
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      # Install dependencies
-      - name: Install dependencies
-        run: npm ci
-
-      # Build your Vite app
-      - name: Build project
-        run: npm run build
-
-     # Verify dist folder exists before deploy
-      - name: Verify dist folder
+      - name: Install deps
         run: |
-          echo "✅ Checking project root"
-          ls -la
-          echo "✅ Checking dist folder"
-          if [ ! -d "dist" ]; then
-            echo "❌ dist folder missing! Build may have failed."
-            exit 1
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
           fi
-          ls -la dist
-
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Build (Vite)
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_branch: gh-pages
-          publish_dir: ./dist
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          path: ./dist
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
