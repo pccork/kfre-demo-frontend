@@ -1,23 +1,33 @@
-import React from 'react'
+import React from "react";
 
 export default function RiskCard({ value }) {
-  const risk = parseFloat(value)
-  let color = 'has-text-success'
-  let label = 'Low Risk'
-
-  if (risk > 40 && risk <= 70) {
-    color = 'has-text-warning'
-    label = 'Moderate Risk'
-  } else if (risk > 70) {
-    color = 'has-text-danger'
-    label = 'High Risk'
-  }
+  const numericValue = parseFloat(value);
+  const isHighRisk = numericValue >= 5; // NICE: ≥5% = high risk
 
   return (
-    <div className="notification is-light has-text-centered mt-5">
-      <h2 className="title is-5">Estimated 5-Year Risk</h2>
-      <p className={`title is-2 ${color}`}>{value}%</p>
-      <p className={`subtitle is-6 ${color}`}>{label}</p>
+    <div
+      className={`notification has-text-centered ${
+        isHighRisk ? "is-danger" : "is-success"
+      }`}
+    >
+      <p className="is-size-4 has-text-weight-semibold">
+        5-Year KFRE Risk: {numericValue}%
+      </p>
+
+      {isHighRisk ? (
+        <>
+          <p className="has-text-weight-bold"> High risk (≥ 5%)</p>
+          <p className="is-size-6">
+            Increased probability of developing end-stage renal disease (ESRD)
+            within 5 years.
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="has-text-weight-semibold">Low-moderate risk (&lt; 5%)</p>
+          <p className="is-size-6">Continue routine CKD monitoring.</p>
+        </>
+      )}
     </div>
-  )
+  );
 }

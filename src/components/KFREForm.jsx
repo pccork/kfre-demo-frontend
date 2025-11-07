@@ -1,69 +1,72 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 export default function KFREForm({ onCalculate }) {
-  const [inputs, setInputs] = useState({ age: '', sex: 'M', egfr: '', acr: '' })
+  const [inputs, setInputs] = useState({ age: "", sex: "male", egfr: "", acr: "" });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setInputs({ ...inputs, [name]: value })
-  }
+  const handleChange = (e) =>
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!inputs.age || !inputs.egfr || !inputs.acr) return
+    e.preventDefault();
     onCalculate({
-      age: Number(inputs.age),
-      egfr: Number(inputs.egfr),
-      acr: Number(inputs.acr),
-      sex: inputs.sex
-    })
-  }
+      age: parseFloat(inputs.age),
+      sex: inputs.sex,
+      egfr: parseFloat(inputs.egfr),
+      acr: parseFloat(inputs.acr),
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label className="label">Age (years)</label>
-        <div className="control">
-          <input className="input" type="number" name="age" value={inputs.age}
-            onChange={handleChange} required />
-        </div>
+        <input
+          className="input"
+          type="number"
+          name="age"
+          value={inputs.age}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div className="field">
         <label className="label">Sex</label>
-        <div className="control">
-          <div className="select is-fullwidth">
-            <select name="sex" value={inputs.sex} onChange={handleChange}>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
+        <div className="select is-fullwidth">
+          <select name="sex" value={inputs.sex} onChange={handleChange}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
       </div>
 
       <div className="field">
-        <label className="label">eGFR (mL/min/1.73m²)</label>
-        <div className="control">
-          <input className="input" type="number" name="egfr"
-            value={inputs.egfr} onChange={handleChange} required />
-        </div>
+        <label className="label">eGFR (mL/min/1.73 m²)</label>
+        <input
+          className="input"
+          type="number"
+          name="egfr"
+          value={inputs.egfr}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div className="field">
         <label className="label">ACR (mg/mmol)</label>
-        <div className="control">
-          <input className="input" type="number" name="acr"
-            value={inputs.acr} onChange={handleChange} required />
-        </div>
+        <input
+          className="input"
+          type="number"
+          name="acr"
+          value={inputs.acr}
+          onChange={handleChange}
+          required
+        />
       </div>
 
-      <div className="field mt-4">
-        <div className="control">
-          <button type="submit" className="button is-link is-fullwidth">
-            Calculate Risk
-          </button>
-        </div>
-      </div>
+      <button className="button is-link is-fullwidth mt-4" type="submit">
+        Calculate 5-Year Risk
+      </button>
     </form>
-  )
+  );
 }
