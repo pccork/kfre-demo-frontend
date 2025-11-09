@@ -1,16 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <nav className="navbar is-link" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        {/* Dashboard title acts as a home link */}
-        <Link className="navbar-item" to="/">
-           Clinical Risk Dashboard (Demo)
-        </Link>
-
-        {/* Optional: mobile burger toggle (not functional for demo) */}
+        {/* Mobile burger (not functional in demo) */}
         <a
           role="button"
           className="navbar-burger"
@@ -24,21 +21,28 @@ export default function Navbar() {
         </a>
       </div>
 
-      <div id="navbarMain" className="navbar-menu">
-        <div className="navbar-start">
-          {/* Home button */}
-          <Link to="/" className="navbar-item">
-             Home
+      <div id="navbarMain" className="navbar-menu is-active">
+        {/* Center title */}
+        <div className="navbar-start" style={{ flexGrow: 1, justifyContent: "center", display: "flex" }}>
+          <Link to="/" className="navbar-item has-text-weight-semibold has-text-white">
+             Clinical Risk Dashboard (Demo)
           </Link>
         </div>
 
+        {/* Right buttons */}
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <button className="button is-light" type="button">
+              <Link
+                to="/"
+                className={`button ${location.pathname === "/" ? "is-white has-text-black" : "is-light has-text-black"}`}
+              >
+                Home
+              </Link>
+              <button className="button is-light has-text-black" type="button">
                 Login
               </button>
-              <button className="button is-light" type="button">
+              <button className="button is-light has-text-black" type="button">
                 Sign out
               </button>
             </div>

@@ -23,7 +23,9 @@ export default function Dashboard() {
   return (
     <section className="section">
       <div className="container has-text-centered">
-        <h1 className="title">Clinical Dashboard (Demo)</h1>
+        {/*Title in green */}
+        <h1 className="title has-text-success">
+        Clinical Dashboard (Demo)</h1>
         <p className="subtitle">Select a risk calculator:</p>
 
         <div className="columns is-centered mt-5 is-multiline">
