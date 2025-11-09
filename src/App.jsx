@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import KFREPage from "./pages/KFREPage";
-import Navbar from "./components/Navbar";
+import DummyRiskPage from "./pages/DummyRiskPage";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/kfre" element={<KFREPage />} />
+        <Route path="/dummy-risk" element={<DummyRiskPage />} />
       </Routes>
     </Router>
   );
