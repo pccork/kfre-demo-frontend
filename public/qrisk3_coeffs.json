@@ -1,0 +1,201 @@
+{
+  "model": "QRISK3",
+  "version": "2017",
+  "note": "Full model structure. Numeric coefficients must be populated from published QRISK3 sources. Ethnicity intentionally excluded.",
+
+  "baseline_survival": {
+    "male": null,
+    "female": null
+  },
+
+  "coefficients": {
+    "intercept": {
+      "male": null,
+      "female": null
+    },
+
+    "age": {
+      "male": null,
+      "female": null
+    },
+    "age_squared": {
+      "male": null,
+      "female": null
+    },
+
+    "bmi": {
+      "male": null,
+      "female": null
+    },
+
+    "sbp": {
+      "male": null,
+      "female": null
+    },
+
+    "sbp_variability": {
+      "male": null,
+      "female": null
+    },
+
+    "tc_hdl_ratio": {
+      "male": null,
+      "female": null
+    },
+
+    "townsend": {
+      "male": null,
+      "female": null
+    },
+
+    "smoking": {
+      "ex": {
+        "male": null,
+        "female": null
+      },
+      "light": {
+        "male": null,
+        "female": null
+      },
+      "moderate": {
+        "male": null,
+        "female": null
+      },
+      "heavy": {
+        "male": null,
+        "female": null
+      }
+    },
+
+    "diabetes_type1": {
+      "male": null,
+      "female": null
+    },
+    "diabetes_type2": {
+      "male": null,
+      "female": null
+    },
+
+    "atrial_fibrillation": {
+      "male": null,
+      "female": null
+    },
+
+    "ckd_stage_3_5": {
+      "male": null,
+      "female": null
+    },
+
+    "rheumatoid_arthritis": {
+      "male": null,
+      "female": null
+    },
+
+    "severe_mental_illness": {
+      "male": null,
+      "female": null
+    },
+
+    "migraine": {
+      "male": null,
+      "female": null
+    },
+
+    "systemic_steroids": {
+      "male": null,
+      "female": null
+    },
+
+    "atypical_antipsychotics": {
+      "male": null,
+      "female": null
+    },
+
+    "erectile_dysfunction": {
+      "male": null
+    },
+
+    "blood_pressure_treatment": {
+      "male": null,
+      "female": null
+    },
+
+    "family_history_cvd": {
+      "male": null,
+      "female": null
+    }
+  },
+
+  "interactions": {
+    "age_bmi": {
+      "male": null,
+      "female": null
+    },
+
+    "age_sbp": {
+      "male": null,
+      "female": null
+    },
+
+    "age_smoking": {
+      "male": {
+        "ex": null,
+        "light": null,
+        "moderate": null,
+        "heavy": null
+      },
+      "female": {
+        "ex": null,
+        "light": null,
+        "moderate": null,
+        "heavy": null
+      }
+    },
+
+    "age_diabetes": {
+      "male": {
+        "type1": null,
+        "type2": null
+      },
+      "female": {
+        "type1": null,
+        "type2": null
+      }
+    },
+
+    "age_af": {
+      "male": null,
+      "female": null
+    },
+
+    "age_ckd": {
+      "male": null,
+      "female": null
+    },
+
+    "age_ra": {
+      "male": null,
+      "female": null
+    },
+
+    "age_smi": {
+      "male": null,
+      "female": null
+    },
+
+    "age_steroids": {
+      "male": null,
+      "female": null
+    },
+
+    "age_antipsychotics": {
+      "male": null,
+      "female": null
+    },
+
+    "age_bp_treated": {
+      "male": null,
+      "female": null
+    }
+  }
+}

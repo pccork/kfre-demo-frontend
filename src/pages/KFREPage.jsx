@@ -33,7 +33,11 @@ export default function KFREPage() {
           <div className="column is-half">
             <div className="box">
               <KFREForm onCalculate={handleCalculate} />
-              {result !== null && <RiskCard value={result} />}
+              {result !== null && <RiskCard value={result}
+              threshold={5}
+              highLabel="⚠️ High risk of ESRD within 5 years (≥5%)"
+              lowLabel="Low–moderate 5-year ESRD risk (<5%)"
+              />}
             </div>
             <p className="has-text-centered is-size-7 mt-4">
               Demo only — equation from Tangri et al., JAMA 2011 (NICE NG203).

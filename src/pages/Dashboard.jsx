@@ -39,6 +39,11 @@ export default function Dashboard() {
             description="Calculate age from date of birth (dd/mm/yyyy)."
             to="/dummy-risk"
           />
+          <AppCard
+            title="QRISK3 (Demo)"
+            description="10-year CVD risk — no ethnicity parameter."
+            to="/qrisk3"
+          />
         </div>
       </div>
     </section>
